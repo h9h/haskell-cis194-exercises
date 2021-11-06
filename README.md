@@ -59,4 +59,28 @@ stack exec homeworkxx-exe
 ```
 
 where `xx` is to be replaced by the homework number. Note the `-exe` appendix.
- 
+
+Implement tests in /test/Spec.hs and run them with
+
+```
+stack test
+```
+
+You need to add some test-libraries (hspec and following) in package.yaml:
+
+```
+tests:
+  homework01-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - homework01
+    - hspec
+    - hspec-contrib 
+    - QuickCheck 
+    - HUnit
+```
