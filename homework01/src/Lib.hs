@@ -1,5 +1,5 @@
 module Lib
-    ( someFunc, toDigits, toDigitsRev, doubleEveryOther
+    ( someFunc, toDigits, toDigitsRev, doubleEveryOther, sumDigits
     ) where
 
 someFunc :: IO ()
@@ -37,3 +37,7 @@ toDigitsRev number = reverse $ toDigits number
 -}
 doubleEveryOther :: [Integer] -> [Integer]
 doubleEveryOther = reverse . zipWith ($) (cycle [id, (*2)]) . reverse
+
+-- Exercise 3
+sumDigits :: [Integer] -> Integer
+sumDigits = sum . concatMap toDigits
