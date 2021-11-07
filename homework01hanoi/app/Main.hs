@@ -1,7 +1,7 @@
 module Main where
 
-import Lib (hanoi)
+import Lib (hanoi4)
 
 main :: IO ()
-main = print (hanoi 3 "A" "B" "C")
+main = print (hanoi4 6 "A" "B" "C" "D")
 
