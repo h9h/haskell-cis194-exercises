@@ -31,3 +31,10 @@ main = hspec $ do
       sumDigits [1,2,3,4] `shouldBe` 10
     it "sum all digits (even double-digits)" $ do
       sumDigits [1, 12, 3, 14] `shouldBe` 12
+  describe "validate" $ do
+    it "4012888888881881 should validate" $ do
+      validate 4012888888881881 `shouldBe` True
+    it "4012888888881882 should not validate" $ do
+      validate 4012888888881882 `shouldBe` False
+    it "0 should not validate" $ do
+      validate 0 `shouldBe` False

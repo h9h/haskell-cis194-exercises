@@ -1,5 +1,5 @@
 module Lib
-    ( someFunc, toDigits, toDigitsRev, doubleEveryOther, sumDigits
+    ( someFunc, toDigits, toDigitsRev, doubleEveryOther, sumDigits, validate
     ) where
 
 someFunc :: IO ()
@@ -30,6 +30,9 @@ toDigitsRev number = reverse $ toDigits number
 
     So:
         - cycle [id, (* 2)] creates an infinite list alternating the functions  (*2) and identity
+        - ($) is function application, so zipWith ($) has type
+            zipWith ($) :: [x -> y] -> [x] -> [y]
+          It expects a list of function and a list and return a new list with the function element applied to the list element
         - zipWith ($) [id, (*2), id, (*2), ...] [a,b,c,d...] returns
             [$ id a, $ (*2) b, $ id c, ...]
     
@@ -39,5 +42,17 @@ doubleEveryOther :: [Integer] -> [Integer]
 doubleEveryOther = reverse . zipWith ($) (cycle [id, (*2)]) . reverse
 
 -- Exercise 3
+{-
+    Idea here is to just split all integers in the list once again into digits,
+    hence we map our toDigits funtion over the list.
+    Since we then have a list of lists we need to flatten this.
+    concatMap unifies these two steps.
+-}
 sumDigits :: [Integer] -> Integer
 sumDigits = sum . concatMap toDigits
+
+-- Exercise 4
+validate :: Integer -> Bool 
+validate number
+    | number <= 0 = False
+    | otherwise = (sumDigits . doubleEveryOther $ toDigits number) `mod` 10 == 0
