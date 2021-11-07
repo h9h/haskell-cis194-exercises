@@ -3,7 +3,6 @@ import Test.Hspec
 import Test.QuickCheck
 
 import Lib
-import Lib (doubleEveryOther, sumDigits)
 
 main :: IO ()
 main = hspec $ do
